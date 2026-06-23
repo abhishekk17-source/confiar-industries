@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Confiar Industries LLP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2540;
+      --copper: #b5651d;
+      --copper-light: #d4874a;
+      --silver: #c0c8d8;
+      --offwhite: #000000;
+      --white: #111111;
+      --dark: #ffffff;
+      --mid: #cccccc;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--offwhite); color: var(--dark); }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 64px; z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #fff; letter-spacing: 0.04em; }
+    .nav-logo span { color: var(--copper-light); }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { color: var(--silver); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; cursor: pointer; }
+    .nav-links a:hover { color: var(--copper-light); }
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #2c3e6e 60%, #1a2540 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 100px 24px 60px; position: relative; overflow: hidden;
+    }
+    .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--copper-light); font-weight: 600; margin-bottom: 20px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 4.5rem); color: #fff; line-height: 1.1; margin-bottom: 24px; }
+    .hero h1 span { color: var(--copper-light); display: block; }
+    .hero-divider { width: 60px; height: 3px; background: var(--copper); margin: 0 auto 28px; border-radius: 2px; }
+    .hero-sub { color: var(--silver); font-size: 1.05rem; max-width: 520px; line-height: 1.7; margin-bottom: 40px; }
+    .hero-btn { display: inline-block; background: var(--copper); color: #fff; padding: 14px 36px; border-radius: 3px; text-decoration: none; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; transition: background 0.2s, transform 0.2s; }
+    .hero-btn:hover { background: var(--copper-light); transform: translateY(-2px); }
+    section { padding: 90px 24px; }
+    .container { max-width: 1080px; margin: 0 auto; }
+    .section-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--copper); font-weight: 700; margin-bottom: 12px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--copper-light); line-height: 1.2; margin-bottom: 20px; }
+    .section-line { width: 48px; height: 3px; background: var(--copper); border-radius: 2px; margin-bottom: 40px; }
+    #about { background: #111111; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-text p { color: var(--mid); line-height: 1.8; font-size: 1rem; margin-bottom: 20px; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .stat-card { background: var(--navy); border-radius: 6px; padding: 28px 24px; text-align: center; }
+    .stat-card .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--copper-light); display: block; margin-bottom: 8px; }
+    .stat-card .stat-label { color: var(--silver); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    #products { background: #1a1a1a; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-top: 10px; }
+    .product-card { background: #222; border-radius: 6px; padding: 36px 28px; border-top: 4px solid var(--copper); transition: transform 0.2s, box-shadow 0.2s; overflow: hidden; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(181,101,29,0.2); }
+    .product-card img { width:100%; height:200px; object-fit:cover; border-radius:6px; margin-bottom:18px; transition: transform 0.4s ease; }
+    .product-card img:hover { transform: scale(1.05); }
+    .product-card h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--copper-light); margin-bottom: 12px; }
+    .product-card p { color: var(--mid); font-size: 0.92rem; line-height: 1.7; }
+    #team { background: var(--navy); }
+    #team .section-title { color: #fff; }
+    #team .section-label { color: var(--copper-light); }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; margin-top: 10px; }
+    .team-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 36px 28px; text-align: center; transition: background 0.2s; }
+    .team-card:hover { background: rgba(255,255,255,0.1); }
+    .team-avatar { width: 70px; height: 70px; border-radius: 50%; background: var(--copper); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #fff; }
+    .team-card h3 { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.15rem; margin-bottom: 6px; }
+    .team-card .role { color: var(--copper-light); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+    .team-card .phone a { color: var(--silver); text-decoration: none; }
+    .team-card .phone a:hover { color: var(--copper-light); }
+    #contact { background: #111111; }
+    .contact-grid { display: grid; grid-template-columns: 1fr; gap: 60px; align-items: start; max-width: 600px; }
+    .contact-info { display: flex; flex-direction: column; gap: 28px; }
+    .contact-item { display: flex; gap: 18px; align-items: flex-start; }
+    .contact-icon { width: 44px; height: 44px; flex-shrink: 0; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .contact-icon svg { width: 20px; height: 20px; fill: var(--copper-light); }
+    .contact-item h4 { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--copper); font-weight: 700; margin-bottom: 4px; }
+    .contact-item p, .contact-item a { color: var(--mid); font-size: 0.95rem; line-height: 1.6; text-decoration: none; }
+    .contact-item a:hover { color: var(--copper); }
+    footer { background: #0d1420; color: var(--silver); text-align: center; padding: 32px 24px; font-size: 0.85rem; }
+    footer a { color: var(--copper-light); text-decoration: none; }
+    footer span { color: var(--copper); }
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 16px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      section { padding: 64px 20px; }
+    }
+    @media (max-width: 480px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">Confiar <span>Industries</span></div>
+  <div class="nav-links">
+    <a onclick="goTo('about')">About</a>
+    <a onclick="goTo('products')">Products</a>
+    <a onclick="goTo('team')">Team</a>
+    <a onclick="goTo('contact')">Contact</a>
+  </div>
+</nav>
+<section class="hero">
+  <p class="hero-eyebrow">Manufacturing Excellence</p>
+  <h1>Confiar<span>Industries LLP</span></h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">Precision manufacturing of Aluminium and Copper wires — built to the highest industrial standards from Bhiwadi, Rajasthan.</p>
+  <a onclick="goTo('contact')" class="hero-btn" style="cursor:pointer;">Get in Touch</a>
+</section>
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-label">Who We Are</p>
+        <h2 class="section-title">Crafting Quality Metal Products Since Day One</h2>
+        <div class="section-line"></div>
+        <p>Confiar Industries LLP is a dedicated manufacturer of high-quality Aluminium and Copper wires, serving industries that demand precision, reliability, and consistency.</p>
+        <p>Located in the heart of the RIICO Industrial Area, Bhiwadi, Rajasthan, we combine modern manufacturing processes with a commitment to quality at every step.</p>
+        <p>Visit us at <a href="http://www.confiarindustries.com" target="_blank" style="color:var(--copper); font-weight:600;">confiarindustries.com</a></p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card"><span class="stat-num">Al</span><span class="stat-label">Aluminium Wire</span></div>
+        <div class="stat-card"><span class="stat-num">Cu</span><span class="stat-label">Copper Wire</span></div>
+        <div class="stat-card"><span class="stat-num">LLP</span><span class="stat-label">Registered Firm</span></div>
+        <div class="stat-card"><span class="stat-num">RJ</span><span class="stat-label">Rajasthan, India</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="products">
+  <div class="container">
+    <p class="section-label">What We Make</p>
+    <h2 class="section-title">Our Products</h2>
+    <div class="section-line"></div>
+    <div class="products-grid">
+      <div class="product-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Aluminum_wire.jpg/640px-Aluminum_wire.jpg" alt="Aluminium Wire" onerror="this.style.display='none'"/>
+        <h3>Aluminium Wire</h3>
+        <p>High-conductivity aluminium wires manufactured with precision for electrical, industrial, and infrastructure applications.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Copper_wire.jpg/640px-Copper_wire.jpg" alt="Copper Wire" onerror="this.style.display='none'"/>
+        <h3>Copper Wire</h3>
+        <p>Premium copper wires offering superior electrical conductivity, ideal for power distribution, electronics, and heavy-duty wiring.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Catenary_wires.jpg/640px-Catenary_wires.jpg" alt="Custom Manufacturing" onerror="this.style.display='none'"/>
+        <h3>Custom Manufacturing</h3>
+        <p>Tailored wire solutions to meet specific client requirements — dimension, grade, and specification as per industry standards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="team">
+  <div class="container">
+    <p class="section-label">Our People</p>
+    <h2 class="section-title">Meet the Team</h2>
+    <div class="section-line" style="background:var(--copper);"></div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">P</div>
+        <h3>Prateek Jain</h3>
+        <p class="role">Director / Partner</p>
+        <p class="phone"><a href="tel:+919999995623">+91 99999 95623</a></p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">P</div>
+        <h3>Prashant Jain</h3>
+        <p class="role">Director / Partner</p>
+        <p class="phone"><a href="tel:+919871372007">+91 98713 72007</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Reach Us</p>
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="section-line"></div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/></svg></div>
+          <div><h4>Address</h4><p>G1-1273, RIICO Industrial Area-V<br>Rampur Mundana, Tapukara<br>RD Phase-5, Bhiwadi<br>Rajasthan – 301019</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+          <div><h4>Phone</h4><a href="tel:+919999995623">+91 99999 95623 (Prateek)</a><br><a href="tel:+919871372007">+91 98713 72007 (Prashant)</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
+          <div><h4>Website</h4><a href="http://www.confiarindustries.com" target="_blank">www.confiarindustries.com</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <p>© 2026 <span>Confiar Industries LLP</span> · All Rights Reserved · <a href="http://www.confiarindustries.com" target="_blank">confiarindustries.com</a></p>
+</footer>
+<script>
+  function goTo(id) { var el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
+</script>
+</body>
+</html>
